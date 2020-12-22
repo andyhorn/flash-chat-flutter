@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
 import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
@@ -32,15 +33,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 TypewriterAnimatedTextKit(
-                  speed: Duration(seconds: 3),
+                  speed: Duration(milliseconds: 200),
                   text: [
                     'Flash Chat',
                   ],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
+                    color: Colors.black,
                   ),
-                  repeatForever: false,
+                  isRepeatingAnimation: false,
                 ),
                 // Text(
                 //   'Flash Chat',
