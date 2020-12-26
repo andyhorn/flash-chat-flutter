@@ -30,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   tag: kLogoHeroTag,
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    height: 50.0,
                   ),
                 ),
                 TypewriterAnimatedTextKit(
