@@ -30,11 +30,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: kLogoHeroTag,
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: kLogoHeroTag,
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -74,7 +76,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onPressed: () async {
                   setState(() => _isBusy = true);
                   try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+                    final newUser = await _auth.createUserWithEmailAndPassword(
+                        email: _email, password: _password);
                     print(newUser);
                     if (newUser != null) {
                       Navigator.pushNamed(context, ChatScreen.route);

@@ -24,28 +24,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Hero(
-                  tag: kLogoHeroTag,
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: 50.0,
+            Flexible(
+              child: Row(
+                children: <Widget>[
+                  Hero(
+                    tag: kLogoHeroTag,
+                    child: Container(
+                      child: Image.asset('images/logo.png'),
+                      height: 50.0,
+                    ),
                   ),
-                ),
-                TypewriterAnimatedTextKit(
-                  speed: Duration(milliseconds: 200),
-                  text: [
-                    'Flash Chat',
-                  ],
-                  textStyle: TextStyle(
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black,
+                  TypewriterAnimatedTextKit(
+                    speed: Duration(milliseconds: 200),
+                    text: [
+                      'Flash Chat',
+                    ],
+                    textStyle: TextStyle(
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black,
+                    ),
+                    isRepeatingAnimation: false,
                   ),
-                  isRepeatingAnimation: false,
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 48.0,
