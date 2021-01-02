@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat/components/message_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String route = 'chat_screen';
@@ -11,7 +13,10 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final TextEditingController _textController = TextEditingController();
   User _loggedInUser;
+  String _text;
 
   void getCurrentUser() {
     final user = _auth.currentUser;
@@ -51,6 +56,9 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            MessageStream(
+              userEmail: _auth.currentUser.email,
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -58,14 +66,23 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: _textController,
                       onChanged: (value) {
                         //Do something with the user input.
+                        _text = value;
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
                   FlatButton(
                     onPressed: () {
+                      final Map<String, dynamic> data = {
+                        'text': _text,
+                        'sender': _auth.currentUser.email,
+                      };
+
+                      _firestore.collection('messages').add(data);
+                      _textController.text = '';
                       //Implement send functionality.
                     },
                     child: Text(
