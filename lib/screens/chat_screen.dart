@@ -79,6 +79,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       final Map<String, dynamic> data = {
                         'text': _text,
                         'sender': _auth.currentUser.email,
+                        'time': DateTime.now().millisecondsSinceEpoch,
                       };
 
                       _firestore.collection('messages').add(data);

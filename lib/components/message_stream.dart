@@ -28,15 +28,20 @@ class MessageStream extends StatelessWidget {
           for (final message in messages) {
             final String text = message.data()['text'];
             final String sender = message.data()['sender'];
+            final DateTime time =
+                DateTime.fromMillisecondsSinceEpoch(message.data()['time']);
 
             final MessageBubble messageBubble = MessageBubble(
               text: text,
               sender: sender,
+              time: time,
               isSelf: isSelf(sender),
             );
 
             messageBubbles.add(messageBubble);
           }
+
+          messageBubbles.sort((a, b) => b.time.compareTo(a.time));
 
           return Expanded(
             child: Padding(
@@ -45,6 +50,7 @@ class MessageStream extends StatelessWidget {
                 vertical: 20.0,
               ),
               child: ListView(
+                reverse: true,
                 children: messageBubbles,
               ),
             ),

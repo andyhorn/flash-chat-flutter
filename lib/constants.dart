@@ -48,3 +48,5 @@ final InputDecoration kTextFieldDecoration = InputDecoration(
     ),
   ),
 );
+
+const Radius kMessageBubbleRadius = Radius.circular(20.0);
